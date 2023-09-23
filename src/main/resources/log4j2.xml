@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <!--<Configuration status="WARN" monitorInterval="30"> -->
+    <properties>
+        <property name="LOG_HOME">./service-logs</property>
+    </properties>
+    <Appenders>
+        <!--*********************控制台日志***********************-->
+        <Console name="consoleAppender" target="SYSTEM_OUT">
+            <!--设置日志格式及颜色-->
+            <PatternLayout
+                    charset="UTF-8"
+                    pattern="%style{%d{ISO8601}}{bright,green} %highlight{%-5level} [%style{%t}{bright,blue}] %style{%C{}}{bright,yellow}: %msg%n%style{%throwable}{red}"
+                    disableAnsi="false" noConsoleNoAnsi="false"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <!-- 根日志设置 -->
+        <Root level="debug">
+            <AppenderRef ref="consoleAppender" level="debug"/>
+        </Root>
+
+        <!--spring日志-->
+        <Logger name="org.springframework" level="warn"/>
+        <!--druid数据源日志-->
+        <Logger name="druid.sql.Statement" level="warn"/>
+        <!-- mybatis日志 -->
+        <Logger name="com.mybatis" level="warn"/>
+        <Logger name="com.squidwheels.login" level="warn"/>
+    </Loggers>
+
+</Configuration>
